@@ -1,0 +1,21 @@
+#!/bin/bash
+#addresse de liaison avec la box
+ip addr add 42.4.252.193/26 dev eth1
+ip link set dev eth1 up
+#addresse de la liaison avec R1 et R2
+ip addr add 42.4.252.131/26 dev eth0
+ip link set dev eth0 up
+##etablissement de la route vers le reseau domestique
+#ip route add 192.168.142.128/25 via 42.4.252.194
+#activation du routage
+echo 1 > /proc/sys/net/ipv4/ip_forward
+#route vers le reseau domestique (temporaire)
+#ip route add 192.168.141.128/25 via 42.4.252.194
+
+#route vers le reste du reseau
+#ip route add 0.0.0.0/0 via 42.4.252.129
+#ip route add 0.0.0.0/0 via 42.4.252.130
+
+#routage dynamique
+service quagga start
+

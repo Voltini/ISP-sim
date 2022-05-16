@@ -1,0 +1,19 @@
+#!/bin/bash
+#addresse dans le reseau avec FAI access
+ip addr add 42.4.252.130/26 dev eth1
+ip link set dev eth1 up
+#addresse dans le reseau avec FAI services
+ip addr add 42.4.252.67/26 dev eth0
+ip link set dev eth0 up
+#connexion entre R2 et la box
+#ip route add 42.4.252.0/24 via 42.4.252.131
+#activation du routage
+echo 1 > /proc/sys/net/ipv4/ip_forward
+#route vers le DMZ
+#ip route add 42.4.252.0/26 via 42.4.252.129
+#route vers les autres reseaux
+#ip route add 0.0.0.0/0 via 42.4.252.131
+
+#routage dynamique
+service quagga start
+

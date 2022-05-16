@@ -1,0 +1,12 @@
+#!/bin/bash
+dns_content="monsupersite.com
+nameserver 42.4.252.2"
+#ip addr add 192.168.141.130/25 dev eth0
+ip link set dev eth0 up
+#route par defaut via la box
+#ip route add 0.0.0.0/0 via 192.168.141.129
+echo 
+dhclient eth0
+# wget -E -H -k -K -p http://www.monsupersite.com/
+# echo "$dns_content" > /etc/resolv.conf
+
